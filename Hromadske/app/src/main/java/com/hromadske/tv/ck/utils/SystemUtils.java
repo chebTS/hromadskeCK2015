@@ -1,5 +1,7 @@
 package com.hromadske.tv.ck.utils;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 /**
  * Created by cheb on 12/27/14.
  */
@@ -12,6 +14,10 @@ public class SystemUtils {
         public static final String KINO_URL = BASE_URL + "&category=kinodoc";
         public static final String PHOTO_URL = BASE_URL + "&category=fotodoc";
         public static final String TEAM_URL = BASE_URL + "&category=team";
+
+    public static ImageLoader IMAGELOADER = null;
+
+
 
 }
 //        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=news
