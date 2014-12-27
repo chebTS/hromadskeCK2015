@@ -6,6 +6,7 @@
     <color name="blue_dark">#ff1c252f</color>
     <color name="grey">#6e6969</color>
     <color name="background">#f0f0f0</color>
+    <color name="text_color">#555555</color>
 
 
 </resources>
