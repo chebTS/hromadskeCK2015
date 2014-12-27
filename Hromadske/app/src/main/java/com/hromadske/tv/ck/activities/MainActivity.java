@@ -1,21 +1,19 @@
 package com.hromadske.tv.ck.activities;
 
-import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
 
-import com.hromadske.tv.ck.fragments.NavigationDrawerFragment;
 import com.hromadske.tv.ck.R;
+import com.hromadske.tv.ck.fragments.BaseMenuFragment;
+import com.hromadske.tv.ck.fragments.NavigationDrawerFragment;
 import com.hromadske.tv.ck.fragments.PlaceholderFragment;
+
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity
@@ -24,6 +22,7 @@ public class MainActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private CharSequence mTitle;
+    private List<BaseMenuFragment> fragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
