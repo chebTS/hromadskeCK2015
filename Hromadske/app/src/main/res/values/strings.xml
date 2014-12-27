@@ -13,5 +13,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
+    <string name="about">адреса: вул. Хрещатик, 223, офіс 401,\nтел. 38-38-85, 097-189-01-45\nhromadske.ck@gmail.com</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.hromadske.tv.ck.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -9,9 +10,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hromadske.tv.ck.R;
+import com.hromadske.tv.ck.fragments.AboutFragment;
 import com.hromadske.tv.ck.fragments.BaseMenuFragment;
+import com.hromadske.tv.ck.fragments.CultureListFragment;
+import com.hromadske.tv.ck.fragments.FilmsListFragment;
 import com.hromadske.tv.ck.fragments.NavigationDrawerFragment;
+import com.hromadske.tv.ck.fragments.PhotoesListFragment;
 import com.hromadske.tv.ck.fragments.PlaceholderFragment;
+import com.hromadske.tv.ck.fragments.PoliticsListFragment;
+import com.hromadske.tv.ck.fragments.SocietyListFragment;
+import com.hromadske.tv.ck.fragments.TeamListFragment;
 
 import java.util.List;
 
@@ -41,9 +49,32 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        switch (position){
+            case 0:
+                ft.replace(R.id.container, PoliticsListFragment.newInstance(position + 1));
+                break;
+            case 1:
+                ft.replace(R.id.container, SocietyListFragment.newInstance(position + 1));
+                break;
+            case 2:
+                ft.replace(R.id.container, CultureListFragment.newInstance(position + 1));
+                break;
+            case 3:
+                ft.replace(R.id.container, FilmsListFragment.newInstance(position + 1));
+                break;
+            case 4:
+                ft.replace(R.id.container, PhotoesListFragment.newInstance(position + 1));
+                break;
+            case 5:
+                ft.replace(R.id.container, TeamListFragment.newInstance(position + 1));
+                break;
+            case 6:
+                ft.replace(R.id.container, AboutFragment.newInstance(position + 1));
+                break;
+        }
+        //ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1));
+        ft.commit();
     }
 
     public void onSectionAttached(int number) {
