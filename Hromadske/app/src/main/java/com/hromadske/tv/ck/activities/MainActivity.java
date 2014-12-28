@@ -31,7 +31,6 @@ public class MainActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private FrameLayout tabletContainer;
     private CharSequence mTitle;
-    private List<BaseMenuFragment> fragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

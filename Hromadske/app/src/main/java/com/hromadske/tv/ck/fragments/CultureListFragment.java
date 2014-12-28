@@ -3,6 +3,8 @@ package com.hromadske.tv.ck.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,12 +56,16 @@ public class CultureListFragment extends BaseMenuFragment implements AdapterView
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra(SystemUtils.EXTRA_ENTITY, (BaseEntity)parent.getItemAtPosition(position));
         if (((MainActivity)getActivity()).getTabletContainer() == null){
-            Intent intent = new Intent(getActivity(), DetailActivity.class);
-            intent.putExtra(SystemUtils.EXTRA_ENTITY, (BaseEntity)parent.getItemAtPosition(position));
             startActivity(intent);
         }else{
-            //TODO
+            DetailFragment detailFragment = new DetailFragment();
+            detailFragment.setArguments(intent.getExtras());
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .add(R.id.tablet_container, detailFragment)
+                    .commit();
         }
     }
 }
