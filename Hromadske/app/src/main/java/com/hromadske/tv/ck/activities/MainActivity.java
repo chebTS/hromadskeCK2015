@@ -15,6 +15,7 @@ import com.hromadske.tv.ck.fragments.AboutFragment;
 import com.hromadske.tv.ck.fragments.BaseMenuFragment;
 import com.hromadske.tv.ck.fragments.CultureListFragment;
 import com.hromadske.tv.ck.fragments.FilmsListFragment;
+import com.hromadske.tv.ck.fragments.FinReportFragment;
 import com.hromadske.tv.ck.fragments.NavigationDrawerFragment;
 import com.hromadske.tv.ck.fragments.PhotoesListFragment;
 import com.hromadske.tv.ck.fragments.PlaceholderFragment;
@@ -50,6 +51,7 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
+
         switch (position){
             case 0:
                 ft.replace(R.id.container, PoliticsListFragment.newInstance(position + 1));
