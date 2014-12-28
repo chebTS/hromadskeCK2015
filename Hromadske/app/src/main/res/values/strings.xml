@@ -16,5 +16,6 @@
     <string name="about">адреса: вул. Хрещатик, 223, офіс 401,\nтел. 38-38-85, 097-189-01-45\nhromadske.ck@gmail.com</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="financial_reports">Фінансові звіти</string>
 
 </resources>

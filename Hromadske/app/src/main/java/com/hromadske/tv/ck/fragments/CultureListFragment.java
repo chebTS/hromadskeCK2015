@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.activities.DetailActivity;
 import com.hromadske.tv.ck.activities.MainActivity;
+import com.hromadske.tv.ck.entities.BaseEntity;
 import com.hromadske.tv.ck.tasks.BaseHromTask;
 import com.hromadske.tv.ck.utils.SystemUtils;
 
@@ -55,6 +56,7 @@ public class CultureListFragment extends BaseMenuFragment implements AdapterView
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (((MainActivity)getActivity()).getTabletContainer() == null){
             Intent intent = new Intent(getActivity(), DetailActivity.class);
+            intent.putExtra(SystemUtils.EXTRA_ENTITY, (BaseEntity)parent.getItemAtPosition(position));
             startActivity(intent);
         }else{
             //TODO

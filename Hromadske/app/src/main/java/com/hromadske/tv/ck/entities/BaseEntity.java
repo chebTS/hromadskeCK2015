@@ -2,10 +2,12 @@ package com.hromadske.tv.ck.entities;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import java.io.Serializable;
+
 /**
  * Created by cheb on 12/27/14.
  */
-public class BaseEntity {
+public class BaseEntity implements Serializable{
     private int id;
     private String title;
     @JsonProperty("introtext")
