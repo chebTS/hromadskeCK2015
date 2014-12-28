@@ -14,6 +14,7 @@ import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.fragments.AboutFragment;
 import com.hromadske.tv.ck.fragments.BaseMenuFragment;
 import com.hromadske.tv.ck.fragments.CultureListFragment;
+import com.hromadske.tv.ck.fragments.EmptyFragment;
 import com.hromadske.tv.ck.fragments.FilmsListFragment;
 import com.hromadske.tv.ck.fragments.FinReportFragment;
 import com.hromadske.tv.ck.fragments.NavigationDrawerFragment;
@@ -76,6 +77,11 @@ public class MainActivity extends ActionBarActivity
                 break;
         }
         ft.commit();
+        if (tabletContainer != null) {
+            FragmentTransaction ft1 = fragmentManager.beginTransaction();
+            ft1.replace(R.id.tablet_container, EmptyFragment.newInstance(1));
+            ft1.commit();
+        }
     }
 
     public void onSectionAttached(int number) {
