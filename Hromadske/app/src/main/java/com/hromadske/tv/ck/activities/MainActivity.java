@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.fragments.AboutFragment;
@@ -28,7 +29,7 @@ public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
+    private FrameLayout tabletContainer;
     private CharSequence mTitle;
     private List<BaseMenuFragment> fragments;
 
@@ -36,7 +37,7 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        tabletContainer = (FrameLayout)findViewById(R.id.tablet_container);
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -73,7 +74,6 @@ public class MainActivity extends ActionBarActivity
                 ft.replace(R.id.container, AboutFragment.newInstance(position + 1));
                 break;
         }
-        //ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1));
         ft.commit();
     }
 
