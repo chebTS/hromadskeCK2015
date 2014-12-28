@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.tasks.BaseHromTask;
@@ -16,6 +17,7 @@ import com.hromadske.tv.ck.utils.SystemUtils;
  */
 public class CultureListFragment extends BaseMenuFragment {
     private static final String TAG = CultureListFragment.class.getSimpleName();
+    private ListView listView;
 
     public static CultureListFragment newInstance(int sectionNumber) {
         CultureListFragment fragment = new CultureListFragment();
@@ -39,7 +41,8 @@ public class CultureListFragment extends BaseMenuFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated");
-        BaseHromTask baseHromTask = new BaseHromTask(getActivity(), null, SystemUtils.CULTURE_URL);
+        listView = (ListView)view.findViewById(R.id.list);
+        BaseHromTask baseHromTask = new BaseHromTask(getActivity(), null, SystemUtils.CULTURE_URL ,listView);
         baseHromTask.execute();
     }
 }

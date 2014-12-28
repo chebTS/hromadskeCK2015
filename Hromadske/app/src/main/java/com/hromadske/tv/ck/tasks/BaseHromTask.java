@@ -3,6 +3,7 @@ package com.hromadske.tv.ck.tasks;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -10,6 +11,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.type.TypeReference;
 
+import com.hromadske.tv.ck.R;
+import com.hromadske.tv.ck.adapters.BaseEntitiesAdapter;
 import com.hromadske.tv.ck.entities.BaseEntity;
 import com.rightutils.rightutils.collections.RightList;
 import com.rightutils.rightutils.tasks.BaseTask;
@@ -23,10 +26,12 @@ public class BaseHromTask extends BaseTask {
     private static final String TAG = BaseHromTask.class.getSimpleName();
     private String url;
     private RightList<BaseEntity> entities;
+    private ListView listView;
 
-    public BaseHromTask(Context context, View progressBar, String url) {
+    public BaseHromTask(Context context, View progressBar, String url, ListView listView) {
         super(context, progressBar);
         this.url = url;
+        this.listView = listView;
     }
 
     @Override
@@ -56,6 +61,7 @@ public class BaseHromTask extends BaseTask {
                 Log.i(TAG, entity.getTitle());
             }
             Log.i(TAG, "==============================");
+            listView.setAdapter(new BaseEntitiesAdapter(context, R.layout.item_entity, entities));
         }
     }
 

@@ -1,12 +1,16 @@
 package com.hromadske.tv.ck.entities;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 /**
  * Created by cheb on 12/27/14.
  */
 public class BaseEntity {
     private int id;
     private String title;
+    @JsonProperty("introtext")
     private String introText;
+    @JsonProperty("fulltext")
     private String fullText;
     private long created;
     private String video;
