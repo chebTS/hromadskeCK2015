@@ -1,5 +1,10 @@
 package com.hromadske.tv.ck.utils;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -24,6 +29,16 @@ public class SystemUtils {
     public static ImageLoader IMAGELOADER = null;
     public final static ObjectMapper MAPPER = new ObjectMapper().configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+    public static void watchYoutubeVideo(Context context, String id){
+        try{
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+            context.startActivity(intent);
+        }catch (ActivityNotFoundException ex){
+            Intent intent=new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://www.youtube.com/watch?v="+id));
+            context.startActivity(intent);
+        }
+    }
 
 }
 //        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=news

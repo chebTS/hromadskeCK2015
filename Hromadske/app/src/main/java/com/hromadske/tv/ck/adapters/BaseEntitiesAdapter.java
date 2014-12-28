@@ -47,7 +47,6 @@ public class BaseEntitiesAdapter extends ArrayAdapter<BaseEntity> {
         BaseEntity entity = getItem(position);
         holder.txtName.setText(entity.getTitle());
         ImageAware imageAware = new ImageViewAware(holder.imgIcon);
-
         IMAGELOADER.displayImage(entity.getImage(), imageAware);
         return convertView;
     }
