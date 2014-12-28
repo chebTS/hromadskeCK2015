@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.entities.BaseEntity;
-import com.hromadske.tv.ck.utils.SystemUtils;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 

@@ -1,6 +1,5 @@
 package com.hromadske.tv.ck.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,19 +9,10 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hromadske.tv.ck.R;
-import com.hromadske.tv.ck.entities.BaseEntity;
-import com.nostra13.universalimageloader.core.imageaware.ImageAware;
-import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
-
-import static com.hromadske.tv.ck.utils.SystemUtils.EXTRA_ENTITY;
-import static com.hromadske.tv.ck.utils.SystemUtils.IMAGELOADER;
-import static com.hromadske.tv.ck.utils.SystemUtils.watchYoutubeVideo;
 
 /**
  * Created by cheb on 28.12.2014.

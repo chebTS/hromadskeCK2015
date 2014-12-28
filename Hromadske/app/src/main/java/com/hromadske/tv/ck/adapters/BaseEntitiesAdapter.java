@@ -1,8 +1,6 @@
 package com.hromadske.tv.ck.adapters;
 
 import android.content.Context;
-import android.content.Entity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +10,12 @@ import android.widget.TextView;
 
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.entities.BaseEntity;
-import com.hromadske.tv.ck.utils.SystemUtils;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
 import java.util.List;
 
-import static com.hromadske.tv.ck.utils.SystemUtils.*;
+import static com.hromadske.tv.ck.utils.SystemUtils.IMAGELOADER;
 
 /**
  * Created by cheb on 28.12.2014.
