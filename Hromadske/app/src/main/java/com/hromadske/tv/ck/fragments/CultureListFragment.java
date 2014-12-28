@@ -1,5 +1,6 @@
 package com.hromadske.tv.ck.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.hromadske.tv.ck.R;
+import com.hromadske.tv.ck.activities.DetailActivity;
 import com.hromadske.tv.ck.activities.MainActivity;
 import com.hromadske.tv.ck.tasks.BaseHromTask;
 import com.hromadske.tv.ck.utils.SystemUtils;
@@ -52,9 +54,10 @@ public class CultureListFragment extends BaseMenuFragment implements AdapterView
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (((MainActivity)getActivity()).getTabletContainer() == null){
-
+            Intent intent = new Intent(getActivity(), DetailActivity.class);
+            startActivity(intent);
         }else{
-
+            //TODO
         }
     }
 }

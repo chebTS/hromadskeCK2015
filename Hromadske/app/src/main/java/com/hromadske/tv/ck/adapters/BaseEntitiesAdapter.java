@@ -39,7 +39,6 @@ public class BaseEntitiesAdapter extends ArrayAdapter<BaseEntity> {
             convertView = inflater.inflate(R.layout.item_entity, parent, false);
             holder = new ViewHolder();
             holder.txtName = (TextView)convertView.findViewById(R.id.txt_title);
-            holder.txtDescription = (TextView)convertView.findViewById(R.id.txt_description);
             holder.imgIcon = (ImageView)convertView.findViewById(R.id.img_icon);
             convertView.setTag(holder);
         }else{
@@ -47,21 +46,14 @@ public class BaseEntitiesAdapter extends ArrayAdapter<BaseEntity> {
         }
         BaseEntity entity = getItem(position);
         holder.txtName.setText(entity.getTitle());
-        holder.txtDescription.setText(entity.getIntroText());
         ImageAware imageAware = new ImageViewAware(holder.imgIcon);
-        /*if (imageAware == null){
-            Log.i(TAG, "imageAware == null");
-        }
-        if (IMAGELOADER == null){
-            Log.i(TAG, "IMAGELOADER == null");
-        }*/
+
         IMAGELOADER.displayImage(entity.getImage(), imageAware);
         return convertView;
     }
 
     static class ViewHolder {
         TextView txtName;
-        TextView txtDescription;
         ImageView imgIcon;
     }
 }
