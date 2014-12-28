@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.fragments.DetailFragment;
+import com.hromadske.tv.ck.fragments.FinReportFragment;
 import com.hromadske.tv.ck.utils.SystemUtils;
 
 public class DetailActivity extends ActionBarActivity {
@@ -24,7 +25,10 @@ public class DetailActivity extends ActionBarActivity {
                         .commit();
             }
         }else{
-            //TODO about
+            FinReportFragment finReportFragment = new FinReportFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, finReportFragment)
+                    .commit();
         }
     }
 
