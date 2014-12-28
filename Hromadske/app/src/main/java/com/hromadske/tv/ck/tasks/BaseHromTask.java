@@ -56,11 +56,11 @@ public class BaseHromTask extends BaseTask {
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         if (result){
-            Log.i(TAG, "==============================");
+            /*Log.i(TAG, "==============================");
             for (BaseEntity entity: entities){
                 Log.i(TAG, entity.getTitle());
             }
-            Log.i(TAG, "==============================");
+            Log.i(TAG, "==============================");*/
             listView.setAdapter(new BaseEntitiesAdapter(context, R.layout.item_entity, entities));
         }
     }

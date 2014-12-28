@@ -7,7 +7,6 @@ import android.net.Uri;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import static org.codehaus.jackson.map.DeserializationConfig.*;
