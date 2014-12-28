@@ -2,6 +2,11 @@ package com.hromadske.tv.ck.utils;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
+
+import static org.codehaus.jackson.map.DeserializationConfig.*;
+
 /**
  * Created by cheb on 12/27/14.
  */
@@ -16,7 +21,7 @@ public class SystemUtils {
         public static final String TEAM_URL = BASE_URL + "&category=team";
 
     public static ImageLoader IMAGELOADER = null;
-
+    public final static ObjectMapper MAPPER = new ObjectMapper().configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
 
 }
