@@ -47,8 +47,8 @@ public class CultureListFragment extends BaseMenuFragment implements AdapterView
         Log.i(TAG, "onViewCreated");
         listView = (ListView)view.findViewById(R.id.list);
         listView.setOnItemClickListener(this);
-        BaseHromTask baseHromTask = new BaseHromTask(getActivity(), null, SystemUtils.CULTURE_URL ,listView);
-        baseHromTask.execute();
+        new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
+                SystemUtils.CULTURE_URL ,listView).execute();
     }
 
     @Override
