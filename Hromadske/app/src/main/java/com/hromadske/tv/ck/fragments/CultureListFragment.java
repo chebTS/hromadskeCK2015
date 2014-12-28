@@ -6,16 +6,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.hromadske.tv.ck.R;
+import com.hromadske.tv.ck.activities.MainActivity;
 import com.hromadske.tv.ck.tasks.BaseHromTask;
 import com.hromadske.tv.ck.utils.SystemUtils;
 
 /**
  * Created by cheb on 12/27/14.
  */
-public class CultureListFragment extends BaseMenuFragment {
+public class CultureListFragment extends BaseMenuFragment implements AdapterView.OnItemClickListener {
     private static final String TAG = CultureListFragment.class.getSimpleName();
     private ListView listView;
 
@@ -42,7 +44,17 @@ public class CultureListFragment extends BaseMenuFragment {
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated");
         listView = (ListView)view.findViewById(R.id.list);
+        listView.setOnItemClickListener(this);
         BaseHromTask baseHromTask = new BaseHromTask(getActivity(), null, SystemUtils.CULTURE_URL ,listView);
         baseHromTask.execute();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (((MainActivity)getActivity()).getTabletContainer() == null){
+
+        }else{
+
+        }
     }
 }

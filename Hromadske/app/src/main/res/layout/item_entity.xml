@@ -4,12 +4,13 @@
     android:orientation="horizontal"
     android:background="@android:color/white"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="80dp">
     
     <ImageView
+        android:scaleType="centerCrop"
         android:id="@+id/img_icon"
-        android:layout_width="150dp"
-        android:layout_height="100dp" />
+        android:layout_width="100dp"
+        android:layout_height="80dp" />
 
     <LinearLayout
         android:orientation="vertical"
