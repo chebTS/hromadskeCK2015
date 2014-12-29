@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.entities.BaseEntity;
@@ -22,6 +24,7 @@ import static com.hromadske.tv.ck.utils.SystemUtils.IMAGELOADER;
  * Created by cheb on 28.12.2014.
  */
 public class DetailFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = DetailFragment.class.getSimpleName();
     private BaseEntity entity;
     public DetailFragment() {
     }
@@ -37,9 +40,10 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         entity = (BaseEntity)getArguments().getSerializable(EXTRA_ENTITY);
         ((TextView)view.findViewById(R.id.txt_title)).setText(entity.getTitle());
         ImageView imgYoutube = (ImageView)view.findViewById(R.id.img_youtube);
-        if(entity.getVideo() == null){
+        if(entity.getVideo() == null || entity.getVideo().length() == 0){
             imgYoutube.setVisibility(View.GONE);
         }else{
+            Toast.makeText(getActivity(), entity.getVideo(), Toast.LENGTH_LONG).show();
             imgYoutube.setOnClickListener(this);
         }
         if (entity.getImage() != null){

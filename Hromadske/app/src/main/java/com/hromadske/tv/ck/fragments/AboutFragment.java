@@ -46,7 +46,7 @@ public class AboutFragment extends BaseMenuFragment {
         }else{
             FinReportFragment finReportFragment = new FinReportFragment();
             getActivity().getSupportFragmentManager().beginTransaction()
-                    .add(R.id.tablet_container, finReportFragment)
+                    .replace(R.id.tablet_container, finReportFragment)
                     .commit();
         }
     }

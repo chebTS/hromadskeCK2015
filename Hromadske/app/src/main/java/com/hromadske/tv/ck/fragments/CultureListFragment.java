@@ -46,7 +46,6 @@ public class CultureListFragment extends BaseMenuFragment implements AdapterView
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i(TAG, "onViewCreated");
         listView = (ListView)view.findViewById(R.id.list);
         listView.setOnItemClickListener(this);
         new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
@@ -63,7 +62,7 @@ public class CultureListFragment extends BaseMenuFragment implements AdapterView
             DetailFragment detailFragment = new DetailFragment();
             detailFragment.setArguments(intent.getExtras());
             getActivity().getSupportFragmentManager().beginTransaction()
-                    .add(R.id.tablet_container, detailFragment)
+                    .replace(R.id.tablet_container, detailFragment)
                     .commit();
         }
     }
