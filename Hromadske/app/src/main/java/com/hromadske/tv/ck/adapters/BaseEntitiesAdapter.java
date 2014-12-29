@@ -48,6 +48,11 @@ public class BaseEntitiesAdapter extends ArrayAdapter<BaseEntity> {
         return convertView;
     }
 
+    @Override
+    public BaseEntity getItem(int position) {
+        return super.getItem(super.getCount() - position - 1);
+    }
+
     static class ViewHolder {
         TextView txtName;
         ImageView imgIcon;
