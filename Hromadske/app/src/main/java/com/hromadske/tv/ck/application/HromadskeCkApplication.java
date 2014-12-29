@@ -2,6 +2,7 @@ package com.hromadske.tv.ck.application;
 
 import android.app.Application;
 
+import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.utils.SystemUtils;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -27,6 +28,9 @@ public class HromadskeCkApplication extends Application {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
+                    .showImageForEmptyUri(R.drawable.ic_launcher)
+                    .showImageOnFail(R.drawable.ic_launcher)
+                    .showImageOnLoading(R.drawable.ic_launcher)
                     .build();
             ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                     .diskCacheExtraOptions(1024, 1024, null)//CompressFormat.PNG, 75
