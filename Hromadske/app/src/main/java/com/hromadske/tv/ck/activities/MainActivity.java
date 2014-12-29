@@ -120,7 +120,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            getMenuInflater().inflate(R.menu.main, menu);
+            //getMenuInflater().inflate(R.menu.main, menu);
             restoreActionBar();
             return true;
         }
@@ -129,11 +129,11 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        /*int id = item.getItemId();
 
         if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
