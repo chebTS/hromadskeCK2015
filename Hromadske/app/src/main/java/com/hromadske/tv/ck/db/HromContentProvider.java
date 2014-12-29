@@ -24,29 +24,29 @@ public class HromContentProvider extends ContentProvider {
     DBHelper dbHelper;
     SQLiteDatabase db;
 
-    static final String TABLE_TEAM = "team";
+    public static final String TABLE_TEAM = "team";
 
-    static final String TEAM_ID = "_id";
-    static final String TEAM_TITLE = "title";
-    static final String TEAM_INTROTEXT = "introtext";
-    static final String TEAM_FULLTEXT = "fulltext";
-    static final String TEAM_CREATED = "created";
-    static final String TEAM_VIDEO = "video";
-    static final String TEAM_IMAGE = "image";
+    public static final String _ID = "id";
+    public static final String _TITLE = "title";
+    public static final String _INTROTEXT = "introtext";
+    public static final String _FULLTEXT = "fulltext";
+    public static final String _CREATED = "created";
+    public static final String _VIDEO = "video";
+    public static final String _IMAGE = "image";
 
     static final String DB_CREATE = "create table " + TABLE_TEAM + "("
-            + TEAM_ID + " integer primary key autoincrement, "
-            + TEAM_TITLE + " text, "
-            + TEAM_INTROTEXT + " text, "
-            + TEAM_FULLTEXT + " text, "
-            + TEAM_CREATED + " integer, "
-            + TEAM_VIDEO + " text, "
-            + TEAM_IMAGE + " text" + ");";
+            + _ID + " integer primary key, "
+            + _TITLE + " text, "
+            + _INTROTEXT + " text, "
+            + _FULLTEXT + " text, "
+            + _CREATED + " integer, "
+            + _VIDEO + " text, "
+            + _IMAGE + " text" + ");";
 
     static final String AUTHORITY = "com.hromadske.tv.ck.db.Hromadske";
     static final String TEAM_PATH = "team";
 
-    public static final Uri CONTACT_CONTENT_URI = Uri.parse("content://"
+    public static final Uri TEAM_CONTENT_URI = Uri.parse("content://"
             + AUTHORITY + "/" + TEAM_PATH);
 
     static final String CONTACT_CONTENT_TYPE = "vnd.android.cursor.dir/vnd."
@@ -81,7 +81,7 @@ public class HromContentProvider extends ContentProvider {
                 break;
             case URI_TEAM_ID:
                 qb.setTables(TABLE_TEAM);
-                qb.appendWhere(TEAM_ID + "=" + uri.getLastPathSegment());
+                qb.appendWhere(_ID + "=" + uri.getLastPathSegment());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
@@ -99,15 +99,13 @@ public class HromContentProvider extends ContentProvider {
         return c;
     }
 
-
-
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long id;
         switch (uriMatcher.match(uri)){
             case URI_TEAM_LIST:
-                id = db.insert(TABLE_TEAM, null, values);
+                id = db.insertWithOnConflict(TABLE_TEAM, null,  values, SQLiteDatabase.CONFLICT_REPLACE);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported URI for insertion: " + uri);
@@ -127,29 +125,6 @@ public class HromContentProvider extends ContentProvider {
         return 0;
     }
 
-    private class DBHelper extends SQLiteOpenHelper {
-
-        public DBHelper(Context context) {
-            super(context, DB_NAME, null, DB_VERSION);
-        }
-
-        public void onCreate(SQLiteDatabase db) {
-            db.execSQL(DB_CREATE);
-            ContentValues cv = new ContentValues();
-            for (int i = 1; i <= 3; i++) {
-                cv.put(TEAM_TITLE, "title " + i);
-                cv.put(TEAM_INTROTEXT, "introtext " + i);
-                cv.put(TEAM_FULLTEXT, "ifulltext " + i);
-                cv.put(TEAM_CREATED, "created " + i);
-                cv.put(TEAM_VIDEO, "video " + i);
-                cv.put(TEAM_IMAGE, "image " + i);
-                db.insert(TABLE_TEAM, null, cv);
-            }
-        }
-
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        }
-    }
 
     @Override
     public int bulkInsert(Uri uri, ContentValues[] values) {
@@ -175,4 +150,31 @@ public class HromContentProvider extends ContentProvider {
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
     }
+
+    private class DBHelper extends SQLiteOpenHelper {
+
+        public DBHelper(Context context) {
+            super(context, DB_NAME, null, DB_VERSION);
+        }
+
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL(DB_CREATE);
+            ContentValues cv = new ContentValues();
+            for (int i = 1; i <= 3; i++) {
+                cv.put(_TITLE, "title " + i);
+                cv.put(_INTROTEXT, "introtext " + i);
+                cv.put(_FULLTEXT, "ifulltext " + i);
+                cv.put(_CREATED, "created " + i);
+                cv.put(_VIDEO, "video " + i);
+                cv.put(_IMAGE, "image " + i);
+                db.insert(TABLE_TEAM, null, cv);
+            }
+        }
+
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_TEAM);
+            onCreate(db);
+        }
+    }
+
 }

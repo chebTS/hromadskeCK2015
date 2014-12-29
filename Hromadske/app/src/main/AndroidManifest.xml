@@ -46,6 +46,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hromadske.tv.ck.activities.MainActivity" />
         </activity>
+
+        <provider
+            android:authorities="com.hromadske.tv.ck.db.Hromadske"
+            android:name=".db.HromContentProvider"
+            android:exported="false"/>
+
+
+
     </application>
 
 </manifest>
