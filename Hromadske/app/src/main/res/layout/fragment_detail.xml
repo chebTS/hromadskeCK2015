@@ -35,7 +35,7 @@
 
         <ImageView
             android:id="@+id/img_youtube"
-            android:src="@drawable/youtube_icon"
+            android:src="@drawable/youtube_play"
             android:padding="15dp"
             android:layout_gravity="right"
             android:layout_width="wrap_content"
