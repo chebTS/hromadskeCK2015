@@ -34,4 +34,6 @@ dependencies {
     compile 'com.rightutils:app:1.2.1@aar'
     compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
     compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+    compile 'com.google.android.gms:play-services:6.5.+'
+
 }
