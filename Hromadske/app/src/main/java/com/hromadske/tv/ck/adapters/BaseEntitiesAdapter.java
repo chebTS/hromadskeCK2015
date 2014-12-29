@@ -49,7 +49,7 @@ public class BaseEntitiesAdapter extends ArrayAdapter<BaseEntity> {
     }
 
     @Override
-    public BaseEntity getItem(int position) {
+    public BaseEntity getItem(int position) {  // Server gives us news in wrong order
         return super.getItem(super.getCount() - position - 1);
     }
 
