@@ -43,7 +43,6 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         if(entity.getVideo() == null || entity.getVideo().length() == 0){
             imgYoutube.setVisibility(View.GONE);
         }else{
-            Toast.makeText(getActivity(), entity.getVideo(), Toast.LENGTH_LONG).show();
             imgYoutube.setOnClickListener(this);
         }
         if (entity.getImage() != null){
