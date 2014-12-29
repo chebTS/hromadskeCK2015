@@ -1,28 +1,31 @@
 package com.hromadske.tv.ck.fragments;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.entities.BaseEntity;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
-import static com.hromadske.tv.ck.utils.SystemUtils.*;
+import static com.hromadske.tv.ck.utils.SystemUtils.EXTRA_ENTITY;
 import static com.hromadske.tv.ck.utils.SystemUtils.IMAGELOADER;
+import static com.hromadske.tv.ck.utils.SystemUtils.watchYoutubeVideo;
 
 /**
  * Created by cheb on 28.12.2014.
  */
-public class DetailFragment extends Fragment implements View.OnClickListener {
+public class DetailFragment extends Fragment implements View.OnClickListener{
     private static final String TAG = DetailFragment.class.getSimpleName();
     private BaseEntity entity;
+
     public DetailFragment() {
     }
 
@@ -46,7 +49,6 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
             ImageAware imageAware = new ImageViewAware((ImageView)view.findViewById(R.id.img_photo));
             IMAGELOADER.displayImage(entity.getImage(), imageAware);
         }
-
         ((TextView)view.findViewById(R.id.txt_fulltext)).setText(entity.getFullText());
     }
 
