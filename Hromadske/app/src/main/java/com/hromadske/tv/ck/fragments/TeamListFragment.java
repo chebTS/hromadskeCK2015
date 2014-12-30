@@ -1,6 +1,7 @@
 package com.hromadske.tv.ck.fragments;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.activities.DetailActivity;
 import com.hromadske.tv.ck.activities.MainActivity;
+import com.hromadske.tv.ck.db.HromContentProvider;
 import com.hromadske.tv.ck.entities.BaseEntity;
 import com.hromadske.tv.ck.tasks.BaseHromTask;
 import com.hromadske.tv.ck.utils.SystemUtils;
@@ -45,8 +47,10 @@ public class TeamListFragment extends BaseMenuFragment implements AdapterView.On
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView)view.findViewById(R.id.list);
         listView.setOnItemClickListener(this);
-        new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
-                SystemUtils.TEAM_URL ,listView).execute();
+        if (SystemUtils.isOnline(getActivity())) {
+            new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
+                    SystemUtils.TEAM_URL, listView).execute();
+        }
     }
 
     @Override

@@ -145,7 +145,7 @@ public class HromContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        Log.d(TAG, "onCreate");
+        //Log.d(TAG, "onCreate");
         dbHelper = new DBHelper(getContext());
         return true;
     }

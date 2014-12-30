@@ -67,10 +67,8 @@ public class BaseHromTask extends BaseTask {
         public RightList<BaseEntity> result;
     }
 
-
     private void save(RightList<BaseEntity> entities){
         Vector<ContentValues> cVVector = new Vector<ContentValues>(entities.size());
-
         ContentValues contentValues ;
         for (BaseEntity entity : entities) {
             contentValues = new ContentValues();

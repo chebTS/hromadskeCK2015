@@ -3,6 +3,8 @@ package com.hromadske.tv.ck.utils;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -40,7 +42,16 @@ public class SystemUtils {
         }
     }
 
+    public static boolean isOnline(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
+    }
 }
+
 //        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=news
 //        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=polityka
 //        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=suspilstvo
@@ -48,6 +59,3 @@ public class SystemUtils {
 //        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=kinodoc
 //        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=fotodoc
 //        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=team
-//
-
-

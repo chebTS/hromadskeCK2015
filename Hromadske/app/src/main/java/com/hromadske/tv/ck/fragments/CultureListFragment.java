@@ -48,8 +48,10 @@ public class CultureListFragment extends BaseMenuFragment implements AdapterView
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView)view.findViewById(R.id.list);
         listView.setOnItemClickListener(this);
-        new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
-                SystemUtils.CULTURE_URL ,listView).execute();
+        if (SystemUtils.isOnline(getActivity())) {
+            new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
+                    SystemUtils.CULTURE_URL, listView).execute();
+        }
     }
 
     @Override
