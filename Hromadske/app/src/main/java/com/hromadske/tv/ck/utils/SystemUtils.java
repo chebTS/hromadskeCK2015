@@ -50,12 +50,5 @@ public class SystemUtils {
         }
         return false;
     }
-}
 
-//        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=news
-//        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=polityka
-//        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=suspilstvo
-//        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=kultura
-//        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=kinodoc
-//        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=fotodoc
-//        http://hromadske.cherkasy.ua/?option=com_hromadskeapi&category=team
+}
