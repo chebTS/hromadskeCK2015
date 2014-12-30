@@ -1,15 +1,21 @@
 package com.hromadske.tv.ck.utils;
 
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 
+import com.hromadske.tv.ck.db.HromContentProvider;
+import com.hromadske.tv.ck.entities.BaseEntity;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.rightutils.rightutils.collections.RightList;
 
 import org.codehaus.jackson.map.ObjectMapper;
+
+import java.util.Vector;
 
 import static org.codehaus.jackson.map.DeserializationConfig.*;
 
@@ -49,6 +55,37 @@ public class SystemUtils {
             return true;
         }
         return false;
+    }
+
+    public static void saveData(Context context, String url, RightList<BaseEntity> entities){
+        Vector<ContentValues> cVVector = new Vector<ContentValues>(entities.size());
+        ContentValues contentValues ;
+        for (BaseEntity entity : entities) {
+            contentValues = new ContentValues();
+            contentValues.put(HromContentProvider._ID, entity.getId());
+            contentValues.put(HromContentProvider._TITLE, entity.getTitle());
+            contentValues.put(HromContentProvider._INTROTEXT, entity.getTitle());
+            contentValues.put(HromContentProvider._FULLTEXT, entity.getTitle());
+            contentValues.put(HromContentProvider._CREATED, entity.getTitle());
+            contentValues.put(HromContentProvider._VIDEO, entity.getTitle());
+            contentValues.put(HromContentProvider._IMAGE, entity.getTitle());
+            cVVector.add(contentValues);
+        }
+        ContentValues[] cvArray = new ContentValues[cVVector.size()];
+        cVVector.toArray(cvArray);
+        if (url.equals(SystemUtils.POLITICS_URL)){
+            context.getContentResolver().bulkInsert(HromContentProvider.POLITICS_CONTENT_URI, cvArray);
+        }else if (url.equals(SystemUtils.SOCIETY_URL)){
+            context.getContentResolver().bulkInsert(HromContentProvider.SOCIETY_CONTENT_URI, cvArray);
+        }else if (url.equals(SystemUtils.CULTURE_URL)){
+            context.getContentResolver().bulkInsert(HromContentProvider.CULTURE_CONTENT_URI, cvArray);
+        }else if (url.equals(SystemUtils.FILMS_URL)){
+            context.getContentResolver().bulkInsert(HromContentProvider.FILMS_CONTENT_URI, cvArray);
+        }else if (url.equals(SystemUtils.PHOTOES_URL)){
+            context.getContentResolver().bulkInsert(HromContentProvider.PHOTOES_CONTENT_URI, cvArray);
+        }else if (url.equals(SystemUtils.TEAM_URL)){
+            context.getContentResolver().bulkInsert(HromContentProvider.TEAM_CONTENT_URI, cvArray);
+        }
     }
 
 }

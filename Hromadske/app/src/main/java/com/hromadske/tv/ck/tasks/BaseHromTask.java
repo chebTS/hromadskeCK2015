@@ -20,6 +20,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.util.Vector;
 
+import static com.hromadske.tv.ck.utils.SystemUtils.*;
 import static com.hromadske.tv.ck.utils.SystemUtils.MAPPER;
 
 /**
@@ -59,7 +60,7 @@ public class BaseHromTask extends BaseTask {
         super.onPostExecute(result);
         if (result){
             listView.setAdapter(new BaseEntitiesAdapter(context, R.layout.item_entity, entities));
-            save(entities);
+            saveData(context, url, entities);
         }
     }
 
@@ -67,34 +68,5 @@ public class BaseHromTask extends BaseTask {
         public RightList<BaseEntity> result;
     }
 
-    private void save(RightList<BaseEntity> entities){
-        Vector<ContentValues> cVVector = new Vector<ContentValues>(entities.size());
-        ContentValues contentValues ;
-        for (BaseEntity entity : entities) {
-            contentValues = new ContentValues();
-            contentValues.put(HromContentProvider._ID, entity.getId());
-            contentValues.put(HromContentProvider._TITLE, entity.getTitle());
-            contentValues.put(HromContentProvider._INTROTEXT, entity.getTitle());
-            contentValues.put(HromContentProvider._FULLTEXT, entity.getTitle());
-            contentValues.put(HromContentProvider._CREATED, entity.getTitle());
-            contentValues.put(HromContentProvider._VIDEO, entity.getTitle());
-            contentValues.put(HromContentProvider._IMAGE, entity.getTitle());
-            cVVector.add(contentValues);
-        }
-        ContentValues[] cvArray = new ContentValues[cVVector.size()];
-        cVVector.toArray(cvArray);
-        if (url.equals(SystemUtils.POLITICS_URL)){
-            context.getContentResolver().bulkInsert(HromContentProvider.POLITICS_CONTENT_URI, cvArray);
-        }else if (url.equals(SystemUtils.SOCIETY_URL)){
-            context.getContentResolver().bulkInsert(HromContentProvider.SOCIETY_CONTENT_URI, cvArray);
-        }else if (url.equals(SystemUtils.CULTURE_URL)){
-            context.getContentResolver().bulkInsert(HromContentProvider.CULTURE_CONTENT_URI, cvArray);
-        }else if (url.equals(SystemUtils.FILMS_URL)){
-            context.getContentResolver().bulkInsert(HromContentProvider.FILMS_CONTENT_URI, cvArray);
-        }else if (url.equals(SystemUtils.PHOTOES_URL)){
-            context.getContentResolver().bulkInsert(HromContentProvider.PHOTOES_CONTENT_URI, cvArray);
-        }else if (url.equals(SystemUtils.TEAM_URL)){
-            context.getContentResolver().bulkInsert(HromContentProvider.TEAM_CONTENT_URI, cvArray);
-        }
-    }
+
 }
