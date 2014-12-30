@@ -20,8 +20,8 @@ public class SystemUtils {
         public static final String POLITICS_URL = BASE_URL + "&category=polityka";
         public static final String SOCIETY_URL = BASE_URL + "&category=suspilstvo";
         public static final String CULTURE_URL = BASE_URL + "&category=kultura";
-        public static final String KINO_URL = BASE_URL + "&category=kinodoc";
-        public static final String PHOTO_URL = BASE_URL + "&category=fotodoc";
+        public static final String FILMS_URL = BASE_URL + "&category=kinodoc";
+        public static final String PHOTOES_URL = BASE_URL + "&category=fotodoc";
         public static final String TEAM_URL = BASE_URL + "&category=team";
 
     public static final String EXTRA_ENTITY = "entity";

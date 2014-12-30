@@ -46,7 +46,7 @@ public class PhotoesListFragment extends BaseMenuFragment implements AdapterView
         listView = (ListView)view.findViewById(R.id.list);
         listView.setOnItemClickListener(this);
         new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
-                SystemUtils.PHOTO_URL ,listView).execute();
+                SystemUtils.PHOTOES_URL,listView).execute();
     }
 
     @Override

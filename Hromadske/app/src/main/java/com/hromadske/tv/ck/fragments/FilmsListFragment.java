@@ -46,7 +46,7 @@ public class FilmsListFragment extends BaseMenuFragment implements AdapterView.O
         listView = (ListView)view.findViewById(R.id.list);
         listView.setOnItemClickListener(this);
         new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
-                SystemUtils.KINO_URL ,listView).execute();
+                SystemUtils.FILMS_URL,listView).execute();
     }
 
     @Override
