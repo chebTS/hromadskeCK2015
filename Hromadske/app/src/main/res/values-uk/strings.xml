@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Hromadske</string>
-    <string name="title_section1">Politics</string>
-    <string name="title_section2">Society</string>
-    <string name="title_section3">Culture</string>
-    <string name="title_section4">Films</string>
-    <string name="title_section5">Photoes</string>
-    <string name="title_section6">Team</string>
-    <string name="title_section7">About</string>
+    <string name="app_name">Громадське</string>
+    <string name="title_section1">Політика</string>
+    <string name="title_section2">Суспільство</string>
+    <string name="title_section3">Культура</string>
+    <string name="title_section4">Кіно.док</string>
+    <string name="title_section5">Фото.док</string>
+    <string name="title_section6">Команда</string>
+    <string name="title_section7">Контакти</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="about">адреса: вул. Хрещатик, 223, офіс 401,\nтел. 38-38-85, 097-189-01-45\nhromadske.ck@gmail.com</string>
-    <string name="financial_reports">Financial reports</string>
+    <string name="financial_reports">Фінансові звіти</string>
 
 </resources>
