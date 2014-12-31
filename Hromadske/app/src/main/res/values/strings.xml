@@ -13,5 +13,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="about">Location: 223/401 Khreschatyk st., \ntel: 38-38-85, 097-189-01-45\nhromadske.ck@gmail.com</string>
     <string name="financial_reports">Financial reports</string>
+    <string name="share">share</string>
+    <string name="share_title">Hromadske Cherkasy</string>
+    <string name="share_text_default">I know the news about Cherkasy from this application  http://goo.gl/YAyfhk</string>
 
 </resources>
