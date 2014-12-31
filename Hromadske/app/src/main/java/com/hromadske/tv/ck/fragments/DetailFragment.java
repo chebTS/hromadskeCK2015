@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,13 @@ public class DetailFragment extends Fragment implements View.OnClickListener{
     public DetailFragment() {
     }
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        entity = (BaseEntity)getArguments().getSerializable(EXTRA_ENTITY);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_detail, container, false);
@@ -37,7 +45,6 @@ public class DetailFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        entity = (BaseEntity)getArguments().getSerializable(EXTRA_ENTITY);
         ((TextView)view.findViewById(R.id.txt_title)).setText(entity.getTitle());
         ImageView imgYoutube = (ImageView)view.findViewById(R.id.img_youtube);
         if(entity.getVideo() == null || entity.getVideo().length() == 0){
@@ -60,6 +67,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(entity.getTitle());
     }
 
     @Override

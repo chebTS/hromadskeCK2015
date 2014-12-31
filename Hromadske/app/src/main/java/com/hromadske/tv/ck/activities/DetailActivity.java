@@ -29,6 +29,7 @@ public class DetailActivity extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, finReportFragment)
                     .commit();
+            getSupportActionBar().setTitle(getResources().getString(R.string.financial_reports));
         }
     }
 

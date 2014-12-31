@@ -11,7 +11,7 @@
     <string name="title_section7">About</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="about">Location: 223/401 Khreschatyk st., \ntel: 38-38-85, 097-189-01-45\nhromadske.ck@gmail.com</string>
+    <string name="about">адреса: вул. Хрещатик, 223, офіс 401,\nтел. 38-38-85, 097-189-01-45\nhromadske.ck@gmail.com</string>
     <string name="financial_reports">Financial reports</string>
 
 </resources>
