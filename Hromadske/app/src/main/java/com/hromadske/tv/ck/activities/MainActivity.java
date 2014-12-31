@@ -12,19 +12,14 @@ import android.widget.FrameLayout;
 
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.fragments.AboutFragment;
-import com.hromadske.tv.ck.fragments.BaseMenuFragment;
 import com.hromadske.tv.ck.fragments.CultureListFragment;
 import com.hromadske.tv.ck.fragments.EmptyFragment;
 import com.hromadske.tv.ck.fragments.FilmsListFragment;
-import com.hromadske.tv.ck.fragments.FinReportFragment;
 import com.hromadske.tv.ck.fragments.NavigationDrawerFragment;
 import com.hromadske.tv.ck.fragments.PhotoesListFragment;
-import com.hromadske.tv.ck.fragments.PlaceholderFragment;
 import com.hromadske.tv.ck.fragments.PoliticsListFragment;
 import com.hromadske.tv.ck.fragments.SocietyListFragment;
 import com.hromadske.tv.ck.fragments.TeamListFragment;
-
-import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity

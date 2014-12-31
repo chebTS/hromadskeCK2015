@@ -3,6 +3,8 @@ package com.hromadske.tv.ck.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +14,22 @@ import android.widget.ListView;
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.activities.DetailActivity;
 import com.hromadske.tv.ck.activities.MainActivity;
+import com.hromadske.tv.ck.adapters.BaseEntitiesAdapter;
 import com.hromadske.tv.ck.entities.BaseEntity;
-import com.hromadske.tv.ck.tasks.BaseHromTask;
+import com.hromadske.tv.ck.tasks.EntitiesLoader;
 import com.hromadske.tv.ck.utils.SystemUtils;
+import com.rightutils.rightutils.collections.RightList;
+
+import static com.hromadske.tv.ck.utils.SystemUtils.saveData;
 
 /**
  * Created by cheb on 12/27/14.
  */
-public class FilmsListFragment extends BaseMenuFragment implements AdapterView.OnItemClickListener {
+public class FilmsListFragment extends BaseMenuFragment implements AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<RightList<BaseEntity>>  {
     private static final String TAG = FilmsListFragment.class.getSimpleName();
     private ListView listView;
+    static final int LOADER_ID = 4;
+    private View progressBar;
 
     public static FilmsListFragment newInstance(int sectionNumber) {
         FilmsListFragment fragment = new FilmsListFragment();
@@ -45,10 +53,7 @@ public class FilmsListFragment extends BaseMenuFragment implements AdapterView.O
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView)view.findViewById(R.id.list);
         listView.setOnItemClickListener(this);
-        if (SystemUtils.isOnline(getActivity())) {
-            new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
-                    SystemUtils.FILMS_URL, listView).execute();
-        }
+        progressBar = view.findViewById(R.id.progress);
     }
 
     @Override
@@ -64,5 +69,38 @@ public class FilmsListFragment extends BaseMenuFragment implements AdapterView.O
                     .replace(R.id.tablet_container, detailFragment)
                     .commit();
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        getLoaderManager().initLoader(LOADER_ID, null, this);
+        super.onActivityCreated(savedInstanceState);
+        if (SystemUtils.isOnline(getActivity())) {
+            Loader<RightList<BaseEntity>> loader = getLoaderManager().getLoader(LOADER_ID);
+            loader.forceLoad();
+            progressBar.setVisibility(View.VISIBLE);
+        }else{
+            //TODO
+        }
+    }
+
+
+
+    @Override
+    public Loader<RightList<BaseEntity>> onCreateLoader(int id, Bundle args) {
+        Loader<RightList<BaseEntity>> loader = new EntitiesLoader(getActivity(), SystemUtils.FILMS_URL, progressBar);
+        return loader;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<RightList<BaseEntity>> loader, RightList<BaseEntity> data) {
+        progressBar.setVisibility(View.GONE);
+        listView.setAdapter(new BaseEntitiesAdapter(getActivity(), R.layout.item_entity, data));
+        saveData(getActivity(), SystemUtils.FILMS_URL, data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<RightList<BaseEntity>> loader) {
+
     }
 }

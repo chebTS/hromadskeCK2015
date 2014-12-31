@@ -1,9 +1,13 @@
 package com.hromadske.tv.ck.fragments;
 
+
 import android.content.Intent;
-import android.database.Cursor;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +17,23 @@ import android.widget.ListView;
 import com.hromadske.tv.ck.R;
 import com.hromadske.tv.ck.activities.DetailActivity;
 import com.hromadske.tv.ck.activities.MainActivity;
-import com.hromadske.tv.ck.db.HromContentProvider;
+import com.hromadske.tv.ck.adapters.BaseEntitiesAdapter;
 import com.hromadske.tv.ck.entities.BaseEntity;
-import com.hromadske.tv.ck.tasks.BaseHromTask;
+import com.hromadske.tv.ck.tasks.EntitiesLoader;
 import com.hromadske.tv.ck.utils.SystemUtils;
+import com.rightutils.rightutils.collections.RightList;
+
+import static com.hromadske.tv.ck.utils.SystemUtils.saveData;
 
 /**
  * Created by cheb on 12/27/14.
  */
-public class TeamListFragment extends BaseMenuFragment implements AdapterView.OnItemClickListener {
-    private static final String TAG = TeamListFragment.class.getSimpleName();
+public class TeamListFragment extends BaseMenuFragment implements AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<RightList<BaseEntity>> {
+        private static final String TAG = TeamListFragment.class.getSimpleName();
     private ListView listView;
+    static final int LOADER_ID = 1;
+    private View progressBar;
+
 
     public static TeamListFragment newInstance(int sectionNumber) {
         TeamListFragment fragment = new TeamListFragment();
@@ -47,10 +57,7 @@ public class TeamListFragment extends BaseMenuFragment implements AdapterView.On
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView)view.findViewById(R.id.list);
         listView.setOnItemClickListener(this);
-        if (SystemUtils.isOnline(getActivity())) {
-            new BaseHromTask(getActivity(), view.findViewById(R.id.progress),
-                    SystemUtils.TEAM_URL, listView).execute();
-        }
+        progressBar = view.findViewById(R.id.progress);
     }
 
     @Override
@@ -66,5 +73,36 @@ public class TeamListFragment extends BaseMenuFragment implements AdapterView.On
                     .replace(R.id.tablet_container, detailFragment)
                     .commit();
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        getLoaderManager().initLoader(LOADER_ID, null, this);
+        super.onActivityCreated(savedInstanceState);
+        if (SystemUtils.isOnline(getActivity())) {
+            Loader<RightList<BaseEntity>> loader = getLoaderManager().getLoader(LOADER_ID);
+            loader.forceLoad();
+            progressBar.setVisibility(View.VISIBLE);
+        }else{
+            //TODO
+        }
+    }
+
+    @Override
+    public android.support.v4.content.Loader<RightList<BaseEntity>> onCreateLoader(int id, Bundle args) {
+        Loader<RightList<BaseEntity>> loader = new EntitiesLoader(getActivity(), SystemUtils.TEAM_URL, progressBar);
+        return loader;
+    }
+
+    @Override
+    public void onLoadFinished(android.support.v4.content.Loader<RightList<BaseEntity>> loader, RightList<BaseEntity> data) {
+        progressBar.setVisibility(View.GONE);
+        listView.setAdapter(new BaseEntitiesAdapter(getActivity(), R.layout.item_entity, data));
+        saveData(getActivity(), SystemUtils.TEAM_URL, data);
+    }
+
+    @Override
+    public void onLoaderReset(android.support.v4.content.Loader<RightList<BaseEntity>> loader) {
+
     }
 }

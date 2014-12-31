@@ -1,13 +1,14 @@
 package com.hromadske.tv.ck.tasks;
 
 import android.content.Context;
-import android.content.Loader;
+
 import android.os.AsyncTask;
+import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.View;
 
 import com.hromadske.tv.ck.entities.BaseEntity;
 import com.rightutils.rightutils.collections.RightList;
-import com.rightutils.rightutils.tasks.BaseTask;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -29,6 +30,17 @@ public class EntitiesLoader extends Loader<RightList<BaseEntity>> {
         super(context);
         this.url = url;
         this.progressBar = progressBar;
+        Log.i(TAG, "EntitiesLoader");
+    }
+
+    @Override
+    protected void onStartLoading() {
+        super.onStartLoading();
+    }
+
+    @Override
+    protected void onStopLoading() {
+        super.onStopLoading();
     }
 
     @Override
