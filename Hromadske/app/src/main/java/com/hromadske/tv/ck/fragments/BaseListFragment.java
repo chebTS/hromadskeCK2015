@@ -25,7 +25,6 @@ import com.hromadske.tv.ck.tasks.EntitiesLoader;
 import com.hromadske.tv.ck.utils.SystemUtils;
 import com.rightutils.rightutils.collections.RightList;
 
-import static com.hromadske.tv.ck.utils.SystemUtils.EXTRA_ENTITY;
 import static com.hromadske.tv.ck.utils.SystemUtils.saveData;
 
 /**
@@ -140,9 +139,11 @@ public class BaseListFragment extends BaseMenuFragment  implements
 
         switch (loader.getId()){
             case LOADER_ID:
-                RightList<BaseEntity> baseEntities = (RightList<BaseEntity>)data;
-                listView.setAdapter(new EntitiesAdapter(getActivity(), R.layout.item_entity, baseEntities));
-                saveData(getActivity(), url, baseEntities);
+                RightList<BaseEntity> baseEntities = (RightList<BaseEntity>) data;
+                if (baseEntities != null) {
+                    listView.setAdapter(new EntitiesAdapter(getActivity(), R.layout.item_entity, baseEntities));
+                    saveData(getActivity(), url, baseEntities);
+                }
                 if (progressBar != null) {
                     progressBar.setVisibility(View.GONE);
                 }
@@ -162,7 +163,5 @@ public class BaseListFragment extends BaseMenuFragment  implements
 
     @Override
     public void onLoaderReset(Loader loader) {
-
     }
-
 }

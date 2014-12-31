@@ -44,7 +44,7 @@ public class HromContentProvider extends ContentProvider {
     static String createTableScript(String tableName){
         return "create table " + tableName + "("
                 + SUPER_ID + " integer primary key, "
-                + _ID + " integer, "
+                + _ID + " integer unique, "
                 + _TITLE + " text, "
                 + _INTROTEXT + " text, "
                 + _FULLTEXT + " text, "

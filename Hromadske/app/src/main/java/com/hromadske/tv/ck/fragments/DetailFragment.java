@@ -30,7 +30,6 @@ public class DetailFragment extends Fragment implements View.OnClickListener{
     public DetailFragment() {
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

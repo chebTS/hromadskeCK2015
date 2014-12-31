@@ -42,6 +42,7 @@ public class HromadskeCkApplication extends Application {
                     .defaultDisplayImageOptions(options)
                     .build();
             IMAGELOADER.init(config);
+
         }
     }
 }

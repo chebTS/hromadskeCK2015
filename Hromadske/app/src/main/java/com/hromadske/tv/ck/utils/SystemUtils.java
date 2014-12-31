@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.util.Log;
 
 import com.hromadske.tv.ck.db.HromContentProvider;
 import com.hromadske.tv.ck.entities.BaseEntity;
@@ -24,7 +25,9 @@ import static org.codehaus.jackson.map.DeserializationConfig.*;
  * Created by cheb on 12/27/14.
  */
 public class SystemUtils {
-        private static final String BASE_URL = "http://hromadske.cherkasy.ua/?option=com_hromadskeapi";
+    private static final String TAG = SystemUtils.class.getSimpleName();
+
+    private static final String BASE_URL = "http://hromadske.cherkasy.ua/?option=com_hromadskeapi";
         public static final String POLITICS_URL = BASE_URL + "&category=polityka";
         public static final String SOCIETY_URL = BASE_URL + "&category=suspilstvo";
         public static final String CULTURE_URL = BASE_URL + "&category=kultura";
@@ -65,6 +68,7 @@ public class SystemUtils {
     }
 
     public static void saveData(Context context, String url, RightList<BaseEntity> entities){
+        Log.i(TAG, "saveData");
         Vector<ContentValues> cVVector = new Vector<ContentValues>(entities.size());
         ContentValues contentValues ;
         for (BaseEntity entity : entities) {
