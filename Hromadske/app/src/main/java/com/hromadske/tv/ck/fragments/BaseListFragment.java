@@ -25,6 +25,7 @@ import com.hromadske.tv.ck.tasks.EntitiesLoader;
 import com.hromadske.tv.ck.utils.SystemUtils;
 import com.rightutils.rightutils.collections.RightList;
 
+import static com.hromadske.tv.ck.utils.SystemUtils.EXTRA_ENTITY;
 import static com.hromadske.tv.ck.utils.SystemUtils.saveData;
 
 /**
@@ -69,9 +70,12 @@ public class BaseListFragment extends BaseMenuFragment  implements
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        BaseEntity entity;
         if (isLoading) {
             Intent intent = new Intent(getActivity(), DetailActivity.class);
-            intent.putExtra(SystemUtils.EXTRA_ENTITY, (BaseEntity) parent.getItemAtPosition(position));
+            entity = (BaseEntity) parent.getItemAtPosition(position);
+            ((MainActivity)getActivity()).setEntity(entity);
+            intent.putExtra(SystemUtils.EXTRA_ENTITY, entity);
             if (((MainActivity) getActivity()).getTabletContainer() == null) {
                 startActivity(intent);
             } else {
@@ -84,7 +88,8 @@ public class BaseListFragment extends BaseMenuFragment  implements
         }else{
             Cursor cursor = entityCursorAdapter.getCursor();
             cursor.moveToPosition(position);
-            BaseEntity entity = SystemUtils.buildEntity(cursor);
+            entity = SystemUtils.buildEntity(cursor);
+            ((MainActivity)getActivity()).setEntity(entity);
             Intent intent = new Intent(getActivity(), DetailActivity.class);
             intent.putExtra(SystemUtils.EXTRA_ENTITY, entity);
             if (((MainActivity) getActivity()).getTabletContainer() == null) {
