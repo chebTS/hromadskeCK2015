@@ -20,11 +20,11 @@ import static com.hromadske.tv.ck.utils.SystemUtils.IMAGELOADER;
 /**
  * Created by cheb on 28.12.2014.
  */
-public class BaseEntitiesAdapter extends ArrayAdapter<BaseEntity> {
-    private static final String TAG = BaseEntitiesAdapter.class.getSimpleName();
+public class EntitiesAdapter extends ArrayAdapter<BaseEntity> {
+    private static final String TAG = EntitiesAdapter.class.getSimpleName();
     private LayoutInflater inflater;
 
-    public BaseEntitiesAdapter(Context context, int resource, List<BaseEntity> objects) {
+    public EntitiesAdapter(Context context, int resource, List<BaseEntity> objects) {
         super(context, resource, objects);
         inflater = LayoutInflater.from(context);
     }

@@ -74,6 +74,9 @@ public class SystemUtils {
         }
         ContentValues[] cvArray = new ContentValues[cVVector.size()];
         cVVector.toArray(cvArray);
+        context.getContentResolver().bulkInsert(getURIbyURL(url), cvArray);
+
+/*
         if (url.equals(SystemUtils.POLITICS_URL)){
             context.getContentResolver().bulkInsert(HromContentProvider.POLITICS_CONTENT_URI, cvArray);
         }else if (url.equals(SystemUtils.SOCIETY_URL)){
@@ -86,6 +89,22 @@ public class SystemUtils {
             context.getContentResolver().bulkInsert(HromContentProvider.PHOTOES_CONTENT_URI, cvArray);
         }else if (url.equals(SystemUtils.TEAM_URL)){
             context.getContentResolver().bulkInsert(HromContentProvider.TEAM_CONTENT_URI, cvArray);
+        }*/
+    }
+
+    public static Uri getURIbyURL(String url){
+        if (url.equals(SystemUtils.POLITICS_URL)){
+            return HromContentProvider.POLITICS_CONTENT_URI;
+        }else if (url.equals(SystemUtils.SOCIETY_URL)){
+            return HromContentProvider.SOCIETY_CONTENT_URI;
+        }else if (url.equals(SystemUtils.CULTURE_URL)){
+            return HromContentProvider.CULTURE_CONTENT_URI;
+        }else if (url.equals(SystemUtils.FILMS_URL)){
+            return HromContentProvider.FILMS_CONTENT_URI;
+        }else if (url.equals(SystemUtils.PHOTOES_URL)){
+            return HromContentProvider.PHOTOES_CONTENT_URI;
+        }else{
+            return HromContentProvider.TEAM_CONTENT_URI;
         }
     }
 

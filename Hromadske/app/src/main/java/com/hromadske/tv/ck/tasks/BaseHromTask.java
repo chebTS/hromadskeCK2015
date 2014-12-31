@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.hromadske.tv.ck.R;
-import com.hromadske.tv.ck.adapters.BaseEntitiesAdapter;
+import com.hromadske.tv.ck.adapters.EntitiesAdapter;
 import com.hromadske.tv.ck.entities.BaseEntity;
 import com.rightutils.rightutils.collections.RightList;
 import com.rightutils.rightutils.tasks.BaseTask;
@@ -55,7 +55,7 @@ public class BaseHromTask extends BaseTask {
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         if (result){
-            listView.setAdapter(new BaseEntitiesAdapter(context, R.layout.item_entity, entities));
+            listView.setAdapter(new EntitiesAdapter(context, R.layout.item_entity, entities));
             saveData(context, url, entities);
         }
     }
