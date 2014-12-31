@@ -132,18 +132,24 @@ public class BaseListFragment extends BaseMenuFragment  implements
 
     @Override
     public void onLoadFinished(Loader loader, Object data) {
-        progressBar.setVisibility(View.GONE);
+
         switch (loader.getId()){
             case LOADER_ID:
                 RightList<BaseEntity> baseEntities = (RightList<BaseEntity>)data;
                 listView.setAdapter(new EntitiesAdapter(getActivity(), R.layout.item_entity, baseEntities));
                 saveData(getActivity(), url, baseEntities);
+                if (progressBar != null) {
+                    progressBar.setVisibility(View.GONE);
+                }
                 break;
             case CURSOR_LOADER_ID:
                 if (!isLoading) {
                     Cursor cursor = (Cursor) data;
                     entityCursorAdapter = new EntityCursorAdapter(getActivity(), cursor, 0);
                     listView.setAdapter(entityCursorAdapter);
+                    if (progressBar != null) {
+                        progressBar.setVisibility(View.GONE);
+                    }
                 }
                 break;
         }
