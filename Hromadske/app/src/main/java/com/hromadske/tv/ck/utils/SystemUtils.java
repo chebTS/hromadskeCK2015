@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -64,11 +65,11 @@ public class SystemUtils {
             contentValues = new ContentValues();
             contentValues.put(HromContentProvider._ID, entity.getId());
             contentValues.put(HromContentProvider._TITLE, entity.getTitle());
-            contentValues.put(HromContentProvider._INTROTEXT, entity.getTitle());
-            contentValues.put(HromContentProvider._FULLTEXT, entity.getTitle());
-            contentValues.put(HromContentProvider._CREATED, entity.getTitle());
-            contentValues.put(HromContentProvider._VIDEO, entity.getTitle());
-            contentValues.put(HromContentProvider._IMAGE, entity.getTitle());
+            contentValues.put(HromContentProvider._INTROTEXT, entity.getIntroText());
+            contentValues.put(HromContentProvider._FULLTEXT, entity.getFullText());
+            contentValues.put(HromContentProvider._CREATED, entity.getCreated());
+            contentValues.put(HromContentProvider._VIDEO, entity.getVideo());
+            contentValues.put(HromContentProvider._IMAGE, entity.getImage());
             cVVector.add(contentValues);
         }
         ContentValues[] cvArray = new ContentValues[cVVector.size()];
@@ -86,6 +87,17 @@ public class SystemUtils {
         }else if (url.equals(SystemUtils.TEAM_URL)){
             context.getContentResolver().bulkInsert(HromContentProvider.TEAM_CONTENT_URI, cvArray);
         }
+    }
+
+    public static BaseEntity buildEntity(Cursor cursor){
+        return new BaseEntity(
+                cursor.getInt(cursor.getColumnIndex(HromContentProvider._ID)),
+                cursor.getString(cursor.getColumnIndex(HromContentProvider._TITLE)),
+                cursor.getString(cursor.getColumnIndex(HromContentProvider._INTROTEXT)),
+                cursor.getString(cursor.getColumnIndex(HromContentProvider._FULLTEXT)),
+                cursor.getInt(cursor.getColumnIndex(HromContentProvider._CREATED)),
+                cursor.getString(cursor.getColumnIndex(HromContentProvider._VIDEO)),
+                cursor.getString(cursor.getColumnIndex(HromContentProvider._IMAGE)));
     }
 
 }

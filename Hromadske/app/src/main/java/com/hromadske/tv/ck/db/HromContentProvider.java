@@ -32,6 +32,7 @@ public class HromContentProvider extends ContentProvider {
     public static final String TABLE_PHOTOES = "photoes";
     public static final String TABLE_TEAM = "team";
 
+    public static final String SUPER_ID = "_id";
     public static final String _ID = "id";
     public static final String _TITLE = "title";
     public static final String _INTROTEXT = "introtext";
@@ -42,7 +43,8 @@ public class HromContentProvider extends ContentProvider {
 
     static String createTableScript(String tableName){
         return "create table " + tableName + "("
-                + _ID + " integer primary key, "
+                + SUPER_ID + " integer primary key, "
+                + _ID + " integer, "
                 + _TITLE + " text, "
                 + _INTROTEXT + " text, "
                 + _FULLTEXT + " text, "
@@ -160,7 +162,7 @@ public class HromContentProvider extends ContentProvider {
                 break;
             case URI_POLITICS_ID:
                 qb.setTables(TABLE_POLITICS);
-                qb.appendWhere(_ID + "=" + uri.getLastPathSegment());
+                qb.appendWhere(SUPER_ID + "=" + uri.getLastPathSegment());
                 break;
 
             case URI_SOCIETY_LIST:
@@ -168,7 +170,7 @@ public class HromContentProvider extends ContentProvider {
                 break;
             case URI_SOCIETY_ID:
                 qb.setTables(TABLE_SOCIETY);
-                qb.appendWhere(_ID + "=" + uri.getLastPathSegment());
+                qb.appendWhere(SUPER_ID + "=" + uri.getLastPathSegment());
                 break;
 
             case URI_CULTURE_LIST:
@@ -176,7 +178,7 @@ public class HromContentProvider extends ContentProvider {
                 break;
             case URI_CULTURE_ID:
                 qb.setTables(TABLE_CULTURE);
-                qb.appendWhere(_ID + "=" + uri.getLastPathSegment());
+                qb.appendWhere(SUPER_ID + "=" + uri.getLastPathSegment());
                 break;
 
             case URI_FILMS_LIST:
@@ -184,7 +186,7 @@ public class HromContentProvider extends ContentProvider {
                 break;
             case URI_FILMS_ID:
                 qb.setTables(TABLE_FILMS);
-                qb.appendWhere(_ID + "=" + uri.getLastPathSegment());
+                qb.appendWhere(SUPER_ID + "=" + uri.getLastPathSegment());
                 break;
 
             case URI_PHOTOES_LIST:
@@ -192,7 +194,7 @@ public class HromContentProvider extends ContentProvider {
                 break;
             case URI_PHOTOES_ID:
                 qb.setTables(TABLE_PHOTOES);
-                qb.appendWhere(_ID + "=" + uri.getLastPathSegment());
+                qb.appendWhere(SUPER_ID + "=" + uri.getLastPathSegment());
                 break;
 
             case URI_TEAM_LIST:
@@ -200,7 +202,7 @@ public class HromContentProvider extends ContentProvider {
                 break;
             case URI_TEAM_ID:
                 qb.setTables(TABLE_TEAM);
-                qb.appendWhere(_ID + "=" + uri.getLastPathSegment());
+                qb.appendWhere(SUPER_ID + "=" + uri.getLastPathSegment());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
