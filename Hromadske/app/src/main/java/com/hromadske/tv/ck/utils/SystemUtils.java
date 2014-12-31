@@ -25,13 +25,19 @@ import static org.codehaus.jackson.map.DeserializationConfig.*;
  */
 public class SystemUtils {
         private static final String BASE_URL = "http://hromadske.cherkasy.ua/?option=com_hromadskeapi";
-        public static final String NEWS_URL = BASE_URL + "&category=news";
         public static final String POLITICS_URL = BASE_URL + "&category=polityka";
         public static final String SOCIETY_URL = BASE_URL + "&category=suspilstvo";
         public static final String CULTURE_URL = BASE_URL + "&category=kultura";
         public static final String FILMS_URL = BASE_URL + "&category=kinodoc";
         public static final String PHOTOES_URL = BASE_URL + "&category=fotodoc";
         public static final String TEAM_URL = BASE_URL + "&category=team";
+
+    public static Boolean politicsUpdated = false;
+    public static Boolean societyUpdated = false;
+    public static Boolean cultureUpdated = false;
+    public static Boolean filmssUpdated = false;
+    public static Boolean photoesUpdated = false;
+    public static Boolean teamUpdated = false;
 
     public static final String EXTRA_ENTITY = "entity";
     public static ImageLoader IMAGELOADER = null;
@@ -75,7 +81,7 @@ public class SystemUtils {
         ContentValues[] cvArray = new ContentValues[cVVector.size()];
         cVVector.toArray(cvArray);
         context.getContentResolver().bulkInsert(getURIbyURL(url), cvArray);
-
+        setUpdateStatusByURL(url);
     }
 
     public static Uri getURIbyURL(String url){
@@ -105,4 +111,35 @@ public class SystemUtils {
                 cursor.getString(cursor.getColumnIndex(HromContentProvider._IMAGE)));
     }
 
+    public static Boolean getUpdateStatusByURL(String url){
+        if (url.equals(SystemUtils.POLITICS_URL)){
+            return politicsUpdated;
+        }else if (url.equals(SystemUtils.SOCIETY_URL)){
+            return societyUpdated;
+        }else if (url.equals(SystemUtils.CULTURE_URL)){
+            return cultureUpdated;
+        }else if (url.equals(SystemUtils.FILMS_URL)){
+            return filmssUpdated;
+        }else if (url.equals(SystemUtils.PHOTOES_URL)){
+            return photoesUpdated;
+        }else{
+            return teamUpdated;
+        }
+    }
+
+    public static void setUpdateStatusByURL(String url){
+        if (url.equals(SystemUtils.POLITICS_URL)){
+            politicsUpdated = true;
+        }else if (url.equals(SystemUtils.SOCIETY_URL)){
+            societyUpdated = true;
+        }else if (url.equals(SystemUtils.CULTURE_URL)){
+            cultureUpdated = true;
+        }else if (url.equals(SystemUtils.FILMS_URL)){
+            filmssUpdated = true;
+        }else if (url.equals(SystemUtils.PHOTOES_URL)){
+            photoesUpdated = true;
+        }else{
+            teamUpdated = true;
+        }
+    }
 }

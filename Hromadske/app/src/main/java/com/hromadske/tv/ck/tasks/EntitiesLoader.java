@@ -60,6 +60,7 @@ public class EntitiesLoader extends Loader<RightList<BaseEntity>> {
 
         @Override
         protected RightList<BaseEntity> doInBackground(String... params) {
+            Log.i(TAG, "Loading.. " + url);
             try {
                 HttpGet get = new HttpGet(url);
                 DefaultHttpClient httpClient = new DefaultHttpClient();

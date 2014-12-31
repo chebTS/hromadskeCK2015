@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import static com.hromadske.tv.ck.utils.SystemUtils.saveData;
 public class BaseListFragment extends BaseMenuFragment  implements
         AdapterView.OnItemClickListener,
         LoaderManager.LoaderCallbacks<Object>{
+    private static final String TAG = BaseListFragment.class.getSimpleName();
     protected static final String ARG_URL = "server_url";
     static final int LOADER_ID = 1;
     static final int CURSOR_LOADER_ID = 11;
@@ -102,12 +104,13 @@ public class BaseListFragment extends BaseMenuFragment  implements
         getLoaderManager().initLoader(LOADER_ID, null, this);
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
         super.onActivityCreated(savedInstanceState);
-        if (SystemUtils.isOnline(getActivity())) {
+        if (SystemUtils.isOnline(getActivity()) && !SystemUtils.getUpdateStatusByURL(url)) {
             isLoading = true;
             Loader<RightList<BaseEntity>> loader = getLoaderManager().getLoader(LOADER_ID);
             loader.forceLoad();
             progressBar.setVisibility(View.VISIBLE);
         }else{
+            Log.i(TAG, "Restoring.. " + url);
             isLoading = false;
             Loader<Cursor> cursorLoader = getLoaderManager().getLoader(CURSOR_LOADER_ID);
             cursorLoader.forceLoad();
