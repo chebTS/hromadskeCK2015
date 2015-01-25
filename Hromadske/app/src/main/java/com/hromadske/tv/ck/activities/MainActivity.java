@@ -25,7 +25,6 @@ import com.hromadske.tv.ck.fragments.PoliticsListFragment;
 import com.hromadske.tv.ck.fragments.SocietyListFragment;
 import com.hromadske.tv.ck.fragments.TeamListFragment;
 
-//http://blog.sqisland.com/2014/06/navigationdrawer-creates-fragment-twice.html
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private ShareActionProvider mShareActionProvider;
@@ -85,11 +84,6 @@ public class MainActivity extends ActionBarActivity
             ft1.commit();
         }
     }
-
-/*    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-
-    }*/
 
     public void setEntity(BaseEntity entity) {
         this.entity = entity;

@@ -39,7 +39,6 @@ public class BaseListFragment extends BaseMenuFragment  implements
     protected static final String ARG_URL = "server_url";
     protected static final String TOP = "top";
     protected static final String INDEX = "index";
-    protected static final String DATA = "data";
     static final int LOADER_ID = 1;
     static final int CURSOR_LOADER_ID = 11;
     protected ListView listView;
