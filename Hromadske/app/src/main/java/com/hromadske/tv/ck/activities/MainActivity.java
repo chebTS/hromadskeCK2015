@@ -25,7 +25,7 @@ import com.hromadske.tv.ck.fragments.PoliticsListFragment;
 import com.hromadske.tv.ck.fragments.SocietyListFragment;
 import com.hromadske.tv.ck.fragments.TeamListFragment;
 
-
+//http://blog.sqisland.com/2014/06/navigationdrawer-creates-fragment-twice.html
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private ShareActionProvider mShareActionProvider;
@@ -48,41 +48,48 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
+
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
+    public void onNavigationDrawerItemSelected(int position, boolean fromSavedInstanceState) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-
-        switch (position){
-            case 0:
-                ft.replace(R.id.container, PoliticsListFragment.newInstance(position + 1));
-                break;
-            case 1:
-                ft.replace(R.id.container, SocietyListFragment.newInstance(position + 1));
-                break;
-            case 2:
-                ft.replace(R.id.container, CultureListFragment.newInstance(position + 1));
-                break;
-            case 3:
-                ft.replace(R.id.container, FilmsListFragment.newInstance(position + 1));
-                break;
-            case 4:
-                ft.replace(R.id.container, PhotoesListFragment.newInstance(position + 1));
-                break;
-            case 5:
-                ft.replace(R.id.container, TeamListFragment.newInstance(position + 1));
-                break;
-            case 6:
-                ft.replace(R.id.container, AboutFragment.newInstance(position + 1));
-                break;
+        if (!fromSavedInstanceState) {
+            switch (position) {
+                case 0:
+                    ft.replace(R.id.container, PoliticsListFragment.newInstance(position + 1));
+                    break;
+                case 1:
+                    ft.replace(R.id.container, SocietyListFragment.newInstance(position + 1));
+                    break;
+                case 2:
+                    ft.replace(R.id.container, CultureListFragment.newInstance(position + 1));
+                    break;
+                case 3:
+                    ft.replace(R.id.container, FilmsListFragment.newInstance(position + 1));
+                    break;
+                case 4:
+                    ft.replace(R.id.container, PhotoesListFragment.newInstance(position + 1));
+                    break;
+                case 5:
+                    ft.replace(R.id.container, TeamListFragment.newInstance(position + 1));
+                    break;
+                case 6:
+                    ft.replace(R.id.container, AboutFragment.newInstance(position + 1));
+                    break;
+            }
+            ft.commit();
         }
-        ft.commit();
         if (tabletContainer != null) {
             FragmentTransaction ft1 = fragmentManager.beginTransaction();
             ft1.replace(R.id.tablet_container, EmptyFragment.newInstance(1));
             ft1.commit();
         }
     }
+
+/*    @Override
+    public void onNavigationDrawerItemSelected(int position) {
+
+    }*/
 
     public void setEntity(BaseEntity entity) {
         this.entity = entity;

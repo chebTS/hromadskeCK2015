@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.hromadske.tv.ck.R;
 
@@ -54,7 +53,7 @@ public class NavigationDrawerFragment extends Fragment {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             mFromSavedInstanceState = true;
         }
-        selectItem(mCurrentSelectedPosition);
+        selectItem(mCurrentSelectedPosition, savedInstanceState != null);
     }
 
     @Override
@@ -71,7 +70,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
+                selectItem(position, false);
             }
         });
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
@@ -149,7 +148,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void selectItem(int position) {
+    private void selectItem(int position, boolean fromSavedInstanceState) {
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -158,7 +157,7 @@ public class NavigationDrawerFragment extends Fragment {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
         if (mCallbacks != null) {
-            mCallbacks.onNavigationDrawerItemSelected(position);
+            mCallbacks.onNavigationDrawerItemSelected(position, fromSavedInstanceState);
         }
     }
 
@@ -223,6 +222,6 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     public static interface NavigationDrawerCallbacks {
-        void onNavigationDrawerItemSelected(int position);
+        void onNavigationDrawerItemSelected(int position, boolean fromSavedInstanceState);
     }
 }

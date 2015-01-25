@@ -25,6 +25,8 @@ import com.hromadske.tv.ck.tasks.EntitiesLoader;
 import com.hromadske.tv.ck.utils.SystemUtils;
 import com.rightutils.rightutils.collections.RightList;
 
+import java.util.ArrayList;
+
 import static com.hromadske.tv.ck.utils.SystemUtils.saveData;
 
 /**
@@ -35,6 +37,9 @@ public class BaseListFragment extends BaseMenuFragment  implements
         LoaderManager.LoaderCallbacks<Object>{
     private static final String TAG = BaseListFragment.class.getSimpleName();
     protected static final String ARG_URL = "server_url";
+    protected static final String TOP = "top";
+    protected static final String INDEX = "index";
+    protected static final String DATA = "data";
     static final int LOADER_ID = 1;
     static final int CURSOR_LOADER_ID = 11;
     protected ListView listView;
@@ -43,6 +48,8 @@ public class BaseListFragment extends BaseMenuFragment  implements
     protected EntityCursorAdapter entityCursorAdapter;
     private String url;
     private Uri content_uri;
+    int top = 0;
+    int index = 0;
 
     public BaseListFragment() {
     }
@@ -50,6 +57,7 @@ public class BaseListFragment extends BaseMenuFragment  implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         url = getArguments().getString(ARG_URL);
         content_uri = SystemUtils.getURIbyURL(url);
     }
@@ -105,21 +113,39 @@ public class BaseListFragment extends BaseMenuFragment  implements
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        getLoaderManager().initLoader(LOADER_ID, null, this);
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
         super.onActivityCreated(savedInstanceState);
-        if (SystemUtils.isOnline(getActivity()) && !SystemUtils.getUpdateStatusByURL(url)) {
-            isLoading = true;
-            Loader<RightList<BaseEntity>> loader = getLoaderManager().getLoader(LOADER_ID);
-            loader.forceLoad();
-            progressBar.setVisibility(View.VISIBLE);
+        if (savedInstanceState == null) {
+            if (SystemUtils.isOnline(getActivity()) && !SystemUtils.getUpdateStatusByURL(url)) {
+                getLoaderManager().initLoader(LOADER_ID, null, this);
+                isLoading = true;
+                Loader<RightList<BaseEntity>> loader = getLoaderManager().getLoader(LOADER_ID);
+                loader.forceLoad();
+                progressBar.setVisibility(View.VISIBLE);
+            } else {
+                isLoading = false;
+                Loader<Cursor> cursorLoader = getLoaderManager().getLoader(CURSOR_LOADER_ID);
+                cursorLoader.forceLoad();
+                progressBar.setVisibility(View.VISIBLE);
+            }
         }else{
-            Log.i(TAG, "Restoring.. " + url);
+            top = savedInstanceState.getInt(TOP);
+            index = savedInstanceState.getInt(INDEX);
             isLoading = false;
             Loader<Cursor> cursorLoader = getLoaderManager().getLoader(CURSOR_LOADER_ID);
             cursorLoader.forceLoad();
             progressBar.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        int index = listView.getFirstVisiblePosition();
+        View v = listView.getChildAt(0);
+        int top = (v == null) ? 0 : (v.getTop() - listView.getPaddingTop());
+        outState.putInt(TOP, top);
+        outState.putInt(INDEX, index);
     }
 
     @Override
@@ -153,6 +179,9 @@ public class BaseListFragment extends BaseMenuFragment  implements
                     Cursor cursor = (Cursor) data;
                     entityCursorAdapter = new EntityCursorAdapter(getActivity(), cursor, 0);
                     listView.setAdapter(entityCursorAdapter);
+                    if (index != 0) {
+                        listView.setSelectionFromTop(index, top);
+                    }
                     if (progressBar != null) {
                         progressBar.setVisibility(View.GONE);
                     }

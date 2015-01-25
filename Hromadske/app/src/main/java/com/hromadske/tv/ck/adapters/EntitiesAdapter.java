@@ -48,11 +48,6 @@ public class EntitiesAdapter extends ArrayAdapter<BaseEntity> {
         return convertView;
     }
 
- /*   @Override
-    public BaseEntity getItem(int position) {  // Server gives us news in wrong order
-        return super.getItem(super.getCount() - position - 1);
-    }*/
-
     static class ViewHolder {
         TextView txtName;
         ImageView imgIcon;
