@@ -16,5 +16,6 @@
     <string name="share">share</string>
     <string name="share_title">Громадське Черкассы</string>
     <string name="share_text_default">Я узнаю новости про Черкассы из этого приложения http://goo.gl/YAyfhk</string>
+    <string name="map_pin_title">Офис Громадського</string>
 
 </resources>
