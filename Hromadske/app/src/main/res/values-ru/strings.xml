@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Громадське Черкассы</string>
+    <string name="title_section1">Политика</string>
+    <string name="title_section2">Общество</string>
+    <string name="title_section3">Культура</string>
+    <string name="title_section4">Кино.док</string>
+    <string name="title_section5">Фото.док</string>
+    <string name="title_section6">Команда</string>
+    <string name="title_section7">Контакты</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="about">адрес: ул. Крещатик, 223, офис 401,\nтел. 38-38-85, 097-189-01-45\nhromadske.ck@gmail.com</string>
+    <string name="financial_reports">Финансовые отчеты</string>
+    <string name="share">share</string>
+    <string name="share_title">Громадське Черкассы</string>
+    <string name="share_text_default">Я узнаю новости про Черкассы из этого приложения http://goo.gl/YAyfhk</string>
+
+</resources>
