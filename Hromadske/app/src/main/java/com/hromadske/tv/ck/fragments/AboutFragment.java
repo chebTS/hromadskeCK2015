@@ -72,7 +72,7 @@ public class AboutFragment extends BaseMenuFragment {
         googleMap = mMapView.getMap();
 
         LatLng latLng = new LatLng(49.44559293844536, 32.062362134456635);
-        MarkerOptions marker = new MarkerOptions().position(latLng).title("Hromadske office");
+        MarkerOptions marker = new MarkerOptions().position(latLng).title(getActivity().getString(R.string.map_pin_title));
 
         marker.icon(BitmapDescriptorFactory
                 .defaultMarker(BitmapDescriptorFactory.HUE_ROSE));

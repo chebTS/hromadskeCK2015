@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Hromadske</string>
+    <string name="app_name">Hromadske Ck</string>
     <string name="title_section1">Politics</string>
     <string name="title_section2">Society</string>
     <string name="title_section3">Culture</string>
@@ -16,5 +16,6 @@
     <string name="share">share</string>
     <string name="share_title">Hromadske Cherkasy</string>
     <string name="share_text_default">I know the news about Cherkasy from this application  http://goo.gl/YAyfhk</string>
+    <string name="map_pin_title">Hromadske office</string>
 
 </resources>
