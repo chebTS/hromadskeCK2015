@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "943280542493",
+    "firebase_url": "https://api-project-943280542493.firebaseio.com",
+    "project_id": "api-project-943280542493",
+    "storage_bucket": "api-project-943280542493.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943280542493:android:35799074a5f2720e",
+        "android_client_info": {
+          "package_name": "com.hromadske.tv.ck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943280542493-6cd2qtticksf3jriig7e648ik2lnjr6g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hromadske.tv.ck",
+            "certificate_hash": "817F671366E3A8E84AB226FC2B780B0021BECA72"
+          }
+        },
+        {
+          "client_id": "943280542493-3rrsb0flendjlpr1gu0s5j1g5ks2hl20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbjOYGgJcNuBqgfDGlUKKA_iFQqGe_5I0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943280542493-3rrsb0flendjlpr1gu0s5j1g5ks2hl20.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
