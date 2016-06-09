@@ -60,10 +60,10 @@
             android:exported="false"/>
 
 
-
+<!--
         <meta-data
             android:name="com.crashlytics.ApiKey"
-            android:value="56193b26f6ecfdc879fe6a8d3674b02d33524fe3" />
+            android:value="56193b26f6ecfdc879fe6a8d3674b02d33524fe3" />-->
     </application>
 
 </manifest>
