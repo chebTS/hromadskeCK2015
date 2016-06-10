@@ -1,6 +1,6 @@
 package com.hromadske.tv.ck.application;
 
-import android.support.multidex.MultiDexApplication;
+import android.app.Application;
 
 import com.hromadske.tv.ck.R;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -16,7 +16,7 @@ import static com.hromadske.tv.ck.utils.SystemUtils.IMAGELOADER;
 /**
  * Created by cheb on 12/27/14.
  */
-public class HromadskeCkApplication extends MultiDexApplication {
+public class HromadskeCkApplication extends Application {
 
     @Override
     public void onCreate() {
